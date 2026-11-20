@@ -73,4 +73,15 @@ public interface DenseRunestoneNotifierConfig extends Config
 	{
 		return "Not mining dense essence";
 	}
+
+	@ConfigItem(
+		keyName = "notifyOnStop",
+		name = "Notify when you stop mining",
+		description = "Send a RuneLite notification (desktop notification, per your RuneLite notification settings) when you stop mining a dense runestone",
+		position = 6
+	)
+	default boolean notifyOnStop()
+	{
+		return true;
+	}
 }

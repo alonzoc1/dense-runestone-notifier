@@ -19,6 +19,7 @@ import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.gameval.AnimationID;
+import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -66,6 +67,9 @@ public class DenseRunestoneNotifierPlugin extends Plugin
 
 	@Inject
 	private DenseRunestoneNotifierConfig config;
+
+	@Inject
+	private Notifier notifier;
 
 	@Inject
 	private OverlayManager overlayManager;
@@ -275,6 +279,11 @@ public class DenseRunestoneNotifierPlugin extends Plugin
 		overlayMessage = config.stoppedMessage();
 		overlayColor = config.stoppedBoxColor();
 		lastEventTime = Instant.now();
+
+		if (config.notifyOnStop())
+		{
+			notifier.notify(config.stoppedMessage());
+		}
 	}
 
 	@Provides
